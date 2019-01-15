@@ -1,5 +1,4 @@
-#!/usr/local/bin/bash
-# #!/bin/bash
+#!/bin/bash
 #
 # This script is expected to be from Terraform via external provider
 

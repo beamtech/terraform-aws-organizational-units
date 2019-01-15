@@ -1,5 +1,4 @@
-#!/usr/local/bin/bash
-# #!/bin/bash
+#!/bin/bash
 #
 # This script is expected to be from Terraform via external provider
 #
@@ -39,7 +38,7 @@ for ou in ${ou_list}; do
 done
 
 ou_exists_list=$(aws organizations list-organizational-units-for-parent --parent-id ${root_id} --profile ${aws_profile} | jq -r '.OrganizationalUnits[] | [.Name, .Id] | join(":")')
-declare -A ou_lookup
+declare -a ou_lookup
 for ou in ${ou_exists_list}; do
   ou_lookup["${ou%%:*}"]="${ou##*:}"
 done
