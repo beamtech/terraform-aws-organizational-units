@@ -13,7 +13,7 @@ eval "$(jq -r '@sh "aws_profile=\(.aws_profile)"')"
 root_id=$(aws organizations list-roots --profile ${aws_profile} | jq -r .Roots[0].Id)
 
 ou_exists_list=$(aws organizations list-organizational-units-for-parent --parent-id ${root_id} --profile ${aws_profile} | jq -r '.OrganizationalUnits[] | [.Name, .Id] | join(":")')
-declare -A ou_lookup
+declare -a ou_lookup
 for ou in ${ou_exists_list}; do
   ou_lookup["${ou%%:*}"]="${ou##*:}"
 done
